@@ -9,6 +9,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
@@ -25,7 +26,10 @@ public class DeactivateCommand {
                                     Commands.literal("deactivate")
                                             .then(
                                                     Commands.argument("lure", StringArgumentType.word())
-                                                            .suggests(BetterLuresCommand.LURE_SUGGESTIONS)
+                                                            .suggests(
+                                                                    (context, builder) ->
+                                                                            ISuggestionProvider.suggest(LureRegistry.lures.keySet(), builder)
+                                                            )
                                                             .then(
                                                                     Commands.argument("target", EntityArgument.players())
                                                                             .executes(c -> {
