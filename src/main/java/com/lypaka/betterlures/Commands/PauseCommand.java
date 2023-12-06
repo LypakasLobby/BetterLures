@@ -1,6 +1,5 @@
 package com.lypaka.betterlures.Commands;
 
-import com.lypaka.betterlures.BetterLures;
 import com.lypaka.betterlures.Lures.Lure;
 import com.lypaka.betterlures.Lures.LureRegistry;
 import com.lypaka.betterlures.Lures.LureUtils;
@@ -9,6 +8,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.entity.player.ServerPlayerEntity;
 
 public class PauseCommand {
@@ -23,7 +23,10 @@ public class PauseCommand {
                                     Commands.literal("pause")
                                             .then(
                                                     Commands.argument("lure", StringArgumentType.word())
-                                                            .suggests(BetterLuresCommand.LURE_SUGGESTIONS)
+                                                            .suggests(
+                                                                    (context, builder) ->
+                                                                            ISuggestionProvider.suggest(LureRegistry.lures.keySet(), builder)
+                                                            )
                                                             .executes(c -> {
 
                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {

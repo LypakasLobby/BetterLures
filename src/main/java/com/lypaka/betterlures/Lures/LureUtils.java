@@ -4,8 +4,8 @@ import com.lypaka.betterlures.BetterLures;
 import com.lypaka.betterlures.Utils.BossBarHandler;
 import com.lypaka.betterlures.Utils.LureSpawnerTask;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.ItemStackBuilder;
-import com.lypaka.lypakautils.JoinListener;
+import com.lypaka.lypakautils.Listeners.JoinListener;
+import com.lypaka.lypakautils.MiscHandlers.ItemStackBuilder;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -349,7 +349,7 @@ public class LureUtils {
                     if (entry.getKey().equalsIgnoreCase(lure)) {
 
                         int current = entry.getValue();
-                        BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Boosters", lure, "Current").setValue(current);
+                        BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Lures", lure, "Current").setValue(current);
                         break;
 
                     }
@@ -361,7 +361,7 @@ public class LureUtils {
                     if (entry.getKey().equalsIgnoreCase(lure)) {
 
                         int max = entry.getValue();
-                        BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Boosters", lure, "Max").setValue(max);
+                        BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Lures", lure, "Max").setValue(max);
                         break;
 
                     }

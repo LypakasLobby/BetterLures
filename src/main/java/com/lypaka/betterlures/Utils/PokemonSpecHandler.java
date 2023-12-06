@@ -1,6 +1,5 @@
 package com.lypaka.betterlures.Utils;
 
-import com.lypaka.betterlures.Lures.Lure;
 import com.pixelmonmod.pixelmon.api.pokemon.Nature;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.ability.AbilityRegistry;

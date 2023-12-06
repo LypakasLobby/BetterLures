@@ -1,20 +1,19 @@
 package com.lypaka.betterlures.Commands;
 
-import com.lypaka.betterlures.BetterLures;
 import com.lypaka.betterlures.Lures.Lure;
 import com.lypaka.betterlures.Lures.LureRegistry;
 import com.lypaka.betterlures.Lures.LureUtils;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.JoinListener;
-import com.lypaka.lypakautils.PermissionHandler;
+import com.lypaka.lypakautils.Listeners.JoinListener;
+import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 
 import java.util.Map;
 import java.util.UUID;
@@ -31,7 +30,10 @@ public class ActivateCommand {
                                     Commands.literal("activate")
                                             .then(
                                                     Commands.argument("lure", StringArgumentType.word())
-                                                            .suggests(BetterLuresCommand.LURE_SUGGESTIONS)
+                                                            .suggests(
+                                                                    (context, builder) ->
+                                                                            ISuggestionProvider.suggest(LureRegistry.lures.keySet(), builder)
+                                                            )
                                                             .then(
                                                                     Commands.argument("target", EntityArgument.players())
                                                                             .then(

@@ -3,7 +3,7 @@ package com.lypaka.betterlures.Lures;
 import com.lypaka.betterlures.BetterLures;
 import com.lypaka.betterlures.Utils.LureSpawnerTask;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.JoinListener;
+import com.lypaka.lypakautils.Listeners.JoinListener;
 import net.minecraft.world.server.ServerBossInfo;
 
 import java.util.*;

@@ -6,7 +6,7 @@ import com.lypaka.betterlures.Lures.Lure;
 import com.lypaka.betterlures.Lures.LureRegistry;
 import com.lypaka.betterlures.Lures.LureUtils;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.PermissionHandler;
+import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
 import com.pixelmonmod.pixelmon.api.storage.PlayerPartyStorage;
 import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
 import net.minecraft.entity.player.ServerPlayerEntity;

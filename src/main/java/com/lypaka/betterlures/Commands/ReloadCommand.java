@@ -4,7 +4,7 @@ import com.lypaka.betterlures.BetterLures;
 import com.lypaka.betterlures.ConfigGetters;
 import com.lypaka.betterlures.Lures.LureRegistry;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.PermissionHandler;
+import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;

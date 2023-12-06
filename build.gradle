@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 group = 'com.lypaka'
-version = '1.16.5-1.2.0'
+version = '1.16.5-1.2.2'
 
 java {
     archivesBaseName = 'BetterLures'
@@ -115,11 +115,8 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
-    compileOnly fileTree(dir: 'C:\\Users\\Ryan\\Documents\\GitHub\\LIBRARIES', include: ['LypakaUtils-1.16.5-0.0.6-Java8.jar'])
-    compileOnly fileTree(dir: 'C:\\Users\\Ryan\\Documents\\GitHub\\LIBRARIES', include: ['Reforged-1.16.jar'])
-    compileOnly fileTree(dir: 'C:\\Users\\Ryan\\Documents\\GitHub\\LIBRARIES', include: ['BetterOutbreaks-1.16.5-1.0.0.jar'])
-    compileOnly fileTree(dir: 'C:\\Users\\Ryan\\Documents\\GitHub\\LIBRARIES', include: ['BetterAreas-1.16.5-1.0.0.jar'])
-    compileOnly fileTree(dir: 'C:\\Users\\Ryan\\Documents\\GitHub\\LIBRARIES', include: ['BetterPixelmonSpawner-1.16.5-2.0.1.jar'])
+    compileOnly fileTree(dir: 'C:\\Users\\ryan9\\Documents\\GitHub\\LIBRARIES', include: ['LypakaUtils-1.16.5.jar'])
+    compileOnly fileTree(dir: 'C:\\Users\\ryan9\\Documents\\GitHub\\LIBRARIES', include: ['Reforged.jar'])
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency

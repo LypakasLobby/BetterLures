@@ -1,12 +1,11 @@
 package com.lypaka.betterlures.Utils;
 
+import com.lypaka.betterlures.API.LuresLoadedEvent;
 import com.lypaka.betterlures.BetterLures;
 import com.lypaka.betterlures.Lures.LureUtils;
-import com.pixelmonmod.api.pokemon.PokemonSpecificationProxy;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.PokemonBuilder;
 import com.pixelmonmod.pixelmon.api.pokemon.species.Pokedex;
-import com.pixelmonmod.pixelmon.api.pokemon.species.Species;
 import com.pixelmonmod.pixelmon.api.pokemon.species.Stats;
 import com.pixelmonmod.pixelmon.api.spawning.SpawnInfo;
 import com.pixelmonmod.pixelmon.api.spawning.SpawnSet;
@@ -14,6 +13,7 @@ import com.pixelmonmod.pixelmon.api.spawning.archetypes.entities.pokemon.SpawnIn
 import com.pixelmonmod.pixelmon.spawning.PixelmonSpawning;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
@@ -46,6 +46,8 @@ public class PokemonBiomeMap {
 
                     this.cancel();
                     BetterLures.logger.info("Finished loading Pokemon biome map!");
+                    LuresLoadedEvent loadedEvent = new LuresLoadedEvent();
+                    MinecraftForge.EVENT_BUS.post(loadedEvent);
 
                 }
                 Pokemon pokemon = PokemonBuilder.builder().species(pokemonIndex.get()).build();

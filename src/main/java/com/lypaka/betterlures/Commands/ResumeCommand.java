@@ -10,6 +10,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 
@@ -27,7 +28,10 @@ public class ResumeCommand {
                                     Commands.literal("resume")
                                             .then(
                                                     Commands.argument("lure", StringArgumentType.word())
-                                                            .suggests(BetterLuresCommand.LURE_SUGGESTIONS)
+                                                            .suggests(
+                                                                    (context, builder) ->
+                                                                            ISuggestionProvider.suggest(LureRegistry.lures.keySet(), builder)
+                                                            )
                                                             .executes(c -> {
 
                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
@@ -43,20 +47,20 @@ public class ResumeCommand {
 
                                                                     }
 
-                                                                    if (BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Boosters", lure.getLureName()).isVirtual()) {
+                                                                    if (BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Lures", lure.getLureName()).isVirtual()) {
 
-                                                                        player.sendMessage(FancyText.getFormattedText("&eYou do not have this booster currently active!"), player.getUniqueID());
+                                                                        player.sendMessage(FancyText.getFormattedText("&eYou do not have this lure currently active!"), player.getUniqueID());
                                                                         return 1;
 
                                                                     }
 
                                                                     try {
 
-                                                                        Map<String, Integer> boosterMap = BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Boosters", lure.getLureName()).getValue(new TypeToken<Map<String, Integer>>() {});
+                                                                        Map<String, Integer> boosterMap = BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Lures", lure.getLureName()).getValue(new TypeToken<Map<String, Integer>>() {});
                                                                         int current = boosterMap.get("Current");
                                                                         int max = boosterMap.get("Max");
                                                                         LureUtils.activateLure(player, lure, false, current, max);
-                                                                        BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Boosters", lure.getLureName()).setValue(null);
+                                                                        BetterLures.playerConfigManager.getPlayerConfigNode(player.getUniqueID(), "Active-Lures", lure.getLureName()).setValue(null);
                                                                         BetterLures.playerConfigManager.savePlayer(player.getUniqueID());
 
                                                                     } catch (ObjectMappingException e) {

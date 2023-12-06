@@ -3,7 +3,7 @@ package com.lypaka.betterlures.Utils;
 import com.lypaka.betterlures.Lures.Lure;
 import com.lypaka.betterlures.Lures.LurePokemonList;
 import com.lypaka.betterlures.Lures.LureUtils;
-import com.lypaka.lypakautils.JoinListener;
+import com.lypaka.lypakautils.Listeners.JoinListener;
 import com.pixelmonmod.pixelmon.api.config.PixelmonConfigProxy;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.stats.IVStore;
@@ -17,7 +17,7 @@ import net.minecraft.world.gen.Heightmap;
 import java.util.*;
 
 /**
- * A manual spawner for Lure Pokemon, used if a lure is not linked to a natural Pokemon spawner either from Pixelmon or BetterPixelmonSpawner
+ * A manual spawner for Lure Pokemon, used if a lure is not linked to a natural Pokemon spawner either from Pixelmon
  */
 public class LureSpawnerTask extends TimerTask {
 

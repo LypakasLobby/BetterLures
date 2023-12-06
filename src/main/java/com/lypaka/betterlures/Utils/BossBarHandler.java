@@ -3,14 +3,12 @@ package com.lypaka.betterlures.Utils;
 import com.lypaka.betterlures.Lures.Lure;
 import com.lypaka.betterlures.Lures.LureUtils;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.JoinListener;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.server.ServerBossInfo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class BossBarHandler {
 

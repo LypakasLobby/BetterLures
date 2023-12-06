@@ -5,7 +5,7 @@ import com.lypaka.betterlures.Lures.Lure;
 import com.lypaka.betterlures.Lures.LureRegistry;
 import com.lypaka.betterlures.Lures.LureUtils;
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.lypakautils.PermissionHandler;
+import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -33,7 +33,10 @@ public class GiveCommand {
                                                     Commands.argument("player", EntityArgument.players())
                                                             .then(
                                                                     Commands.argument("lure", StringArgumentType.word())
-                                                                            .suggests(LURES)
+                                                                            .suggests(
+                                                                                    (context, builder) ->
+                                                                                            ISuggestionProvider.suggest(LureRegistry.lures.keySet(), builder)
+                                                                            )
                                                                             .then(
                                                                                     Commands.argument("amount", IntegerArgumentType.integer(1))
                                                                                             .executes(c -> {

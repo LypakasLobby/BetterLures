@@ -1,9 +1,5 @@
 package com.lypaka.betterlures.Lures;
 
-import com.lypaka.betterareas.Areas.Area;
-import com.lypaka.betterareas.Areas.AreaHandler;
-import com.lypaka.betterareas.Areas.Spawns.*;
-import com.lypaka.betterlures.BetterLures;
 import com.pixelmonmod.pixelmon.api.pokemon.Element;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.PokemonBuilder;
@@ -27,11 +23,6 @@ public class LurePokemonList {
 
         }
         Map<Pokemon, Double> pokemon = getAllPokemonForLure(lure);
-        if (BetterLures.isBetterAreasInstalled) {
-
-            filterAreaSpawns(pokemon, player);
-
-        }
         map.put(lure, pokemon);
         lurePokemonMap.put(player.getUniqueID(), map);
 
@@ -125,103 +116,6 @@ public class LurePokemonList {
         }
 
         return pokemonMap;
-
-    }
-
-    public static void filterAreaSpawns (Map<Pokemon, Double> pokemonMap, ServerPlayerEntity player) {
-
-        int x = player.getPosition().getX();
-        int y = player.getPosition().getY();
-        int z = player.getPosition().getZ();
-        List<Area> areas = AreaHandler.getSortedAreas(x, y, z, player.world);
-        if (areas.size() == 0) return;
-
-        Area currentArea = areas.get(0);
-        AreaSpawns spawns = AreaHandler.areaSpawnMap.get(currentArea);
-        if (spawns.getNaturalSpawns().size() > 0) {
-
-            for (NaturalSpawn spawn : spawns.getNaturalSpawns()) {
-
-                pokemonMap.entrySet().removeIf(entry -> {
-
-                    if (!spawn.getSpecies().equalsIgnoreCase(entry.getKey().getSpecies().getName())) {
-
-                        return true;
-
-                    } else {
-
-                        return !spawn.getForm().equalsIgnoreCase(entry.getKey().getForm().getName());
-
-                    }
-
-                });
-
-            }
-
-        }
-        if (spawns.getFishSpawns().size() > 0) {
-
-            for (FishSpawn spawn : spawns.getFishSpawns()) {
-
-                pokemonMap.entrySet().removeIf(entry -> {
-
-                    if (!spawn.getSpecies().equalsIgnoreCase(entry.getKey().getSpecies().getName())) {
-
-                        return true;
-
-                    } else {
-
-                        return !spawn.getForm().equalsIgnoreCase(entry.getKey().getForm().getName());
-
-                    }
-
-                });
-
-            }
-
-        }
-        if (spawns.getHeadbuttSpawns().size() > 0) {
-
-            for (HeadbuttSpawn spawn : spawns.getHeadbuttSpawns()) {
-
-                pokemonMap.entrySet().removeIf(entry -> {
-
-                    if (!spawn.getSpecies().equalsIgnoreCase(entry.getKey().getSpecies().getName())) {
-
-                        return true;
-
-                    } else {
-
-                        return !spawn.getForm().equalsIgnoreCase(entry.getKey().getForm().getName());
-
-                    }
-
-                });
-
-            }
-
-        }
-        if (spawns.getRockSmashSpawns().size() > 0) {
-
-            for (RockSmashSpawn spawn : spawns.getRockSmashSpawns()) {
-
-                pokemonMap.entrySet().removeIf(entry -> {
-
-                    if (!spawn.getSpecies().equalsIgnoreCase(entry.getKey().getSpecies().getName())) {
-
-                        return true;
-
-                    } else {
-
-                        return !spawn.getForm().equalsIgnoreCase(entry.getKey().getForm().getName());
-
-                    }
-
-                });
-
-            }
-
-        }
 
     }
 
